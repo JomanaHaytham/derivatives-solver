@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  --color-paper: #f7f5f0;
+  --color-panel: #ffffff;
+  --color-sidebar: #efece5;
+  --color-ink: #1f2430;
+  --color-muted: #6b6f7b;
+  --color-line: #e2ddd2;
+  --color-accent: #2d4a8a;
+  --color-accent-soft: #e6ebf6;
+  --color-ok: #2f7d52;
+  --color-ok-soft: #e4f2ea;
+  --color-warn: #9a6512;
+  --color-warn-soft: #fbf0dc;
+}
+
+/* Dark palette: same token names, redefined. */
+[data-theme="dark"] {
+  --color-paper: #14161c;
+  --color-panel: #1c1f27;
+  --color-sidebar: #181a21;
+  --color-ink: #e6e4df;
+  --color-muted: #9a9ca6;
+  --color-line: #2c303b;
+  --color-accent: #8fa8e3;
+  --color-accent-soft: #232b40;
+  --color-ok: #6fc896;
+  --color-ok-soft: #1b2d24;
+  --color-warn: #e3b25e;
+  --color-warn-soft: #33291a;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* KaTeX: let long equations scroll inside the message instead of the page. */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35rem 0.25rem;
+  margin: 0.6rem 0 !important;
+}
+.katex {
+  font-size: 1.07em;
+}
+
+.prose-math h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.prose-math table {
+  display: block;
+  overflow-x: auto;
+}
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+.dot {
+  animation: blink 1.2s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; opacity: 0.6; }
+}
