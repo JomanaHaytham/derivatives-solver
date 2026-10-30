@@ -185,7 +185,9 @@ def parse_math(text: str) -> sp.Expr:
     if raw.count("(") != raw.count(")"):
         raise ParseError("The parentheses are not balanced.", hint="Check that every '(' has a matching ')'.")
 
-    raw = raw.lower() if raw.isupper() else raw
+    # Students mix cases freely ("3X + x^2", "Sin(x)"), so letters are case-insensitive:
+    # X and x are the same variable.
+    raw = raw.lower()
     raw = _rewrite_glued_functions(raw)
     _validate_words(raw)
     try:

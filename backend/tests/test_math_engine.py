@@ -62,6 +62,13 @@ def test_absolute_value_uses_real_variable():
     assert str(r.derivative) == "sign(x)" and r.verification.verified
 
 
+def test_capital_letters_mean_the_same_variable():
+    assert parse_math("3X + x^2") == 3 * x + x**2
+    assert parse_math("Sin(X)") == sp.sin(x)
+    sol = solve(classify("differentiate 3X + x^2").request)
+    assert sol.result.derivative == 2 * x + 3 and not sol.assumptions
+
+
 def test_equation_parsing():
     lhs, rhs = parse_equation("x^2 + y^2 = 25")
     assert lhs == x**2 + y**2 and rhs == 25
