@@ -1,5 +1,7 @@
 # DeriveIt — AI-Powered Derivatives Solver
 
+**Live site:** https://jomanahaytham.github.io/derivatives-solver/
+
 A ChatGPT-style web app that solves differentiation problems **and teaches them step by step**.
 Every answer is computed and verified by **SymPy**; an optional LLM (Claude) rewrites the
 explanation in friendly language and answers follow-up questions — but it is never trusted to
